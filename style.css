@@ -409,3 +409,217 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+/* ===== DREAMY CLOUDS & STARS BACKGROUND ===== */
+
+body {
+    background: linear-gradient(
+        135deg,
+        #F8F3FC,
+        #EDE2F5,
+        #E6DDF2,
+        #FAF6FC
+    );
+
+    background-size: 300% 300%;
+    animation: dreamySky 14s ease-in-out infinite;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Slowly changing sky colours */
+@keyframes dreamySky {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Floating clouds and stars */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Small stars */
+body::before {
+    background-image:
+        radial-gradient(circle, #FFFFFF 2px, transparent 3px),
+        radial-gradient(circle, #D6BFE8 2px, transparent 3px),
+        radial-gradient(circle, #FFFFFF 1px, transparent 2px),
+        radial-gradient(circle, #C7A9DF 1px, transparent 2px);
+
+    background-size:
+        120px 140px,
+        180px 190px,
+        80px 100px,
+        150px 160px;
+
+    background-position:
+        20px 30px,
+        70px 100px,
+        40px 60px,
+        110px 20px;
+
+    animation: starsMove 13s linear infinite;
+}
+
+/* Soft dreamy clouds */
+body::after {
+    background-image:
+        radial-gradient(
+            ellipse at center,
+            rgba(255, 255, 255, 0.45) 0%,
+            rgba(255, 255, 255, 0.20) 45%,
+            transparent 75%
+        ),
+        radial-gradient(
+            ellipse at center,
+            rgba(218, 197, 235, 0.30) 0%,
+            transparent 70%
+        );
+
+    background-size:
+        380px 180px,
+        480px 220px;
+
+    background-position:
+        0px 15%,
+        200px 75%;
+
+    background-repeat: repeat;
+
+    animation: cloudsFloat 20s ease-in-out infinite alternate;
+}
+
+/* Stars gently float upwards */
+@keyframes starsMove {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-100px);
+    }
+}
+
+/* Clouds slowly drift sideways */
+@keyframes cloudsFloat {
+    from {
+        transform: translateX(-40px);
+    }
+
+    to {
+        transform: translateX(40px);
+    }
+}
+
+/* Keep website content above the background */
+body > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    body,
+    body::before,
+    body::after {
+        animation: none;
+    }
+}
+
+/* ===== WELCOME HERO DESIGN ===== */
+
+.hero {
+    background: #FFFFFF;
+    max-width: 1050px;
+    margin: 45px auto;
+    padding: 75px 40px;
+    border-radius: 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #EDE3F5;
+    box-shadow: 0 10px 30px rgba(118, 85, 143, 0.10);
+}
+
+/* Decorative purple sparkles */
+.hero::before {
+    content: "✦  ✧  ♡  ✧  ✦";
+    position: absolute;
+    top: 25px;
+    left: 30px;
+    color: #B69ACF;
+    font-size: 22px;
+    letter-spacing: 10px;
+    animation: sparkle 3s ease-in-out infinite;
+}
+
+.hero::after {
+    content: "✧  ✦  ✧";
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    color: #B69ACF;
+    font-size: 25px;
+    animation: sparkle 3s ease-in-out infinite alternate;
+}
+
+/* Welcome heading */
+.hero h1 {
+    color: #76558F;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+/* Introduction heading */
+.hero h2 {
+    color: #76558F;
+    margin-bottom: 15px;
+}
+
+/* Introduction paragraph */
+.hero p {
+    color: #777080;
+    line-height: 1.8;
+    max-width: 650px;
+    margin: 0 auto 25px;
+}
+
+/* Sparkle movement */
+@keyframes sparkle {
+    0%, 100% {
+        opacity: 0.5;
+        transform: translateY(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-8px);
+    }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .hero {
+        margin: 25px 12px;
+        padding: 65px 20px;
+    }
+
+    .hero::before {
+        font-size: 16px;
+        letter-spacing: 5px;
+    }
+}
